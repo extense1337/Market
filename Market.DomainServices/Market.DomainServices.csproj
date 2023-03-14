@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Market.DomainEntities\Market.DomainEntities.csproj" />
+      <ProjectReference Include="..\Market.DomainRepositories\Market.DomainRepositories.csproj" />
     </ItemGroup>
 
 </Project>

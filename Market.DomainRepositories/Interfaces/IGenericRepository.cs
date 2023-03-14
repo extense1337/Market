@@ -1,13 +1,13 @@
 ﻿using System.Linq.Expressions;
 
-namespace Market.DomainRepositories;
+namespace Market.DomainRepositories.Interfaces;
 
 public interface IGenericRepository<T> where T : class
 {
-    Task<IEnumerable<T>> All();
-    Task<T> GetById(Guid id);
+    IAsyncEnumerable<T> GetAll();
+    Task<T> GetById(int id);
     Task<bool> Add(T entity);
-    Task<bool> Delete(Guid id);
-    Task<bool> Upsert(T entity);
+    bool Delete(T entity);
+    bool Update(T entity);
     Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate);
 }

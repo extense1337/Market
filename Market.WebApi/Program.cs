@@ -1,3 +1,7 @@
+using Market.Database;
+using Market.Domain.Entities;
+using Market.DomainRepositories.Interfaces;
+using Market.DomainRepositories.Repositories;
 using Market.DomainServices.Interfaces;
 using Market.DomainServices.Services;
 
@@ -12,7 +16,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddTransient<MarketDbContext>();
+
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
+
+builder.Services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+builder.Services.AddScoped<IProductService, ProductService>();
 
 var app = builder.Build();
 

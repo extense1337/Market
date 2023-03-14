@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using Market.Database;
+using Market.DomainRepositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
@@ -18,7 +19,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _logger = logger;
     }
 
-    public virtual async Task<T> GetById(Guid id)
+    public virtual async Task<T> GetById(int id)
     {
         return await _dbSet.FindAsync(id);
     }
@@ -29,14 +30,14 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return true;
     }
 
-    public virtual Task<bool> Delete(Guid id)
+    public virtual bool Delete(T entity)
     {
-        throw new NotImplementedException();
+        return _dbSet.Remove(entity) is { } entityEntry;
     }
 
-    public virtual Task<IEnumerable<T>> All()
+    public virtual IAsyncEnumerable<T> GetAll()
     {
-        throw new NotImplementedException();
+        return _dbSet.AsAsyncEnumerable();
     }
 
     public async Task<IEnumerable<T>> Find(Expression<Func<T, bool>> predicate)
@@ -44,8 +45,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _dbSet.Where(predicate).ToListAsync();
     }
 
-    public virtual Task<bool> Upsert(T entity)
+    public virtual bool Update(T entity)
     {
-        throw new NotImplementedException();
+        return _dbSet.Update(entity) is { } entityEntry;
     }
 }
