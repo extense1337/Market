@@ -1,8 +1,8 @@
-﻿namespace Market.Domain.Enums;
+﻿namespace Market.DomainEntities.Enums;
 
-public enum PricingType
+public enum PricingType : byte
 {
-    ForEach,
-    ForAll,
-    ForMeasure
+    ForEach = 1,
+    ForAll = 2,
+    ForMeasure = 3
 }

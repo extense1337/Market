@@ -2,7 +2,6 @@
 using Market.Database;
 using Market.DomainRepositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 
 namespace Market.DomainRepositories.Repositories;
 
@@ -10,13 +9,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private MarketDbContext _context;
     private readonly DbSet<T> _dbSet;
-    private readonly ILogger _logger;
 
-    public GenericRepository(MarketDbContext context, ILogger logger)
+    public GenericRepository(MarketDbContext context)
     {
         _context = context;
         _dbSet = context.Set<T>();
-        _logger = logger;
     }
 
     public virtual async Task<T> GetById(int id)

@@ -1,4 +1,4 @@
-﻿using Market.Domain.Entities;
+﻿using Market.DomainEntities.Entities;
 
 namespace Market.DomainServices.Interfaces;
 

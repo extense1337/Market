@@ -1,4 +1,4 @@
-namespace Market.Domain.Entities;
+namespace Market.DomainEntities.Entities;
 
 public class WeatherForecast
 {

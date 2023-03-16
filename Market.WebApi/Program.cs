@@ -1,9 +1,10 @@
 using Market.Database;
-using Market.Domain.Entities;
+using Market.DomainEntities.Entities;
 using Market.DomainRepositories.Interfaces;
 using Market.DomainRepositories.Repositories;
 using Market.DomainServices.Interfaces;
 using Market.DomainServices.Services;
+using Microsoft.EntityFrameworkCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +17,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddTransient<MarketDbContext>();
+builder.Services.AddDbContext<MarketDbContext>(options => 
+    options.UseNpgsql(builder.Configuration.GetConnectionString("NpgMarketDbConnection")));
 
 builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
 

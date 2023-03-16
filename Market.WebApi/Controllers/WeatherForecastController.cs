@@ -1,4 +1,4 @@
-using Market.Domain.Entities;
+using Market.DomainEntities.Entities;
 using Market.DomainServices.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

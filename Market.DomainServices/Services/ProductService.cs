@@ -1,5 +1,4 @@
-﻿using Market.Domain.Entities;
-using Market.DomainRepositories;
+﻿using Market.DomainEntities.Entities;
 using Market.DomainRepositories.Interfaces;
 using Market.DomainServices.Interfaces;
 

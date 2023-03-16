@@ -1,6 +1,4 @@
-﻿using Market.Domain.Entities;
-
-namespace Market.DomainEntities.Entities;
+﻿namespace Market.DomainEntities.Entities;
 
 public class Person : BaseEntity
 {

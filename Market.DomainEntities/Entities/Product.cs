@@ -1,7 +1,6 @@
-﻿using Market.Domain.Enums;
-using Market.DomainEntities.Entities;
+﻿using Market.DomainEntities.Enums;
 
-namespace Market.Domain.Entities;
+namespace Market.DomainEntities.Entities;
 
 public class Product : BaseEntity
 {
