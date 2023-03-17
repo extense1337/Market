@@ -14,8 +14,8 @@ public sealed class MarketDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // base.OnModelCreating(modelBuilder);
-        // modelBuilder.Entity<Type>().ToTable("TableName");
+        base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<Product>().Property(p => p.Seller).IsRequired(false);
     }
     
     // How to do migrations after schema change

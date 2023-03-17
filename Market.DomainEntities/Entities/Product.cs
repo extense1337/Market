@@ -10,5 +10,5 @@ public class Product : BaseEntity
     
     public PricingType PricingType { get; set; }
     
-    public Person Seller { get; set; }
+    public virtual Person Seller { get; set; }
 }
