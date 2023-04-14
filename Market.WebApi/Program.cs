@@ -1,9 +1,5 @@
 using Market.Database;
-using Market.DomainEntities.Entities;
-using Market.DomainRepositories.Interfaces;
-using Market.DomainRepositories.Repositories;
-using Market.DomainServices.Interfaces;
-using Market.DomainServices.Services;
+using Market.WebApi;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -20,10 +16,7 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddDbContext<MarketDbContext>(options => 
     options.UseNpgsql(builder.Configuration.GetConnectionString("NpgMarketDbConnection")));
 
-builder.Services.AddScoped<IWeatherForecastService, WeatherForecastService>();
-
-builder.Services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
-builder.Services.AddScoped<IProductService, ProductService>();
+DependencyContainer.Initialize(builder.Services);
 
 var app = builder.Build();
 
