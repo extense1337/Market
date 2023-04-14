@@ -36,7 +36,6 @@ public static class DependencyContainer
     /// <param name="services"></param>
     private static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IWeatherForecastService, WeatherForecastService>();
         services.AddScoped<IProductService, ProductService>();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using System.Linq.Expressions;
-using Market.Database;
 using Market.DomainRepositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -7,12 +6,10 @@ namespace Market.DomainRepositories.Repositories;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private MarketDbContext _context;
     private readonly DbSet<T> _dbSet;
 
-    public GenericRepository(MarketDbContext context)
+    public GenericRepository(DbContext context)
     {
-        _context = context;
         _dbSet = context.Set<T>();
     }
 
