@@ -1,8 +1,8 @@
 ﻿using Market.DomainEntities.Entities;
 using Market.DomainRepositories.Interfaces;
 using Market.DomainRepositories.Repositories;
-using Market.DomainServices.Interfaces;
-using Market.DomainServices.Services;
+using Market.Services.Interfaces;
+using Market.Services.Services;
 
 namespace Market.WebApi;
 

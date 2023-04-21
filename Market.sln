@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.WebApi", "Market.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Database", "Market.Database\Market.Database.csproj", "{8255B44A-68DE-4A08-87D8-2833F38E2B7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.DomainServices", "Market.DomainServices\Market.DomainServices.csproj", "{499C808B-CE7B-4A39-92EF-1E11BF4B675C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Services", "Market.Services\Market.Services.csproj", "{499C808B-CE7B-4A39-92EF-1E11BF4B675C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.DomainEntities", "Market.DomainEntities\Market.DomainEntities.csproj", "{4986FF51-195E-4E3B-B744-092E6A5A11E9}"
 EndProject

@@ -1,6 +1,6 @@
 ﻿using Market.DomainEntities.Entities;
 
-namespace Market.DomainServices.Interfaces;
+namespace Market.Services.Interfaces;
 
 public interface IProductService : IBaseCrudService<Product>
 {

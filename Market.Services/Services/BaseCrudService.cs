@@ -1,8 +1,8 @@
 ﻿using Market.DomainEntities.Entities;
 using Market.DomainRepositories.Interfaces;
-using Market.DomainServices.Interfaces;
+using Market.Services.Interfaces;
 
-namespace Market.DomainServices.Services;
+namespace Market.Services.Services;
 
 public class BaseCrudService<T> : IBaseCrudService<T>
     where T : BaseEntity

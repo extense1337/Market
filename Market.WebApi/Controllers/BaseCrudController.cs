@@ -1,5 +1,5 @@
 ﻿using Market.DomainEntities.Entities;
-using Market.DomainServices.Interfaces;
+using Market.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Market.WebApi.Controllers;
