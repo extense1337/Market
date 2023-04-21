@@ -1,4 +1,5 @@
-﻿using Market.DomainEntities.Entities;
+﻿using Market.Database.Configurations;
+using Market.DomainEntities.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Market.Database;
@@ -15,9 +16,11 @@ public sealed class MarketDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-        modelBuilder.Entity<Product>().Property(p => p.Seller).IsRequired(false);
+        modelBuilder.ApplyConfiguration(new ProductConfiguration());
     }
-    
+
+    #region Migration commands
+
     // How to do migrations after schema change
     //
     // Install ef tool if havent
@@ -27,4 +30,6 @@ public sealed class MarketDbContext : DbContext
     // cmd> cd Market.Database
     // cmd> dotnet ef --startup-project ../Market.WebApi migrations add <migration-name>
     // cmd> dotnet ef --startup-project ../Market.WebApi database update
+
+    #endregion
 }
