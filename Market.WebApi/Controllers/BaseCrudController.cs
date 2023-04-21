@@ -4,9 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Market.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class BaseCrudController<T> : ControllerBase 
+public class BaseCrudController<T> : BaseController 
     where T : BaseEntity
 {
     private readonly IBaseCrudService<T> _baseCrudService;

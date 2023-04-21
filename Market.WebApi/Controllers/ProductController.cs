@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Market.WebApi.Controllers;
 
-[ApiController]
-[Route("[controller]")]
 public class ProductController : BaseCrudController<Product>
 {
     private readonly IProductService _productService;
