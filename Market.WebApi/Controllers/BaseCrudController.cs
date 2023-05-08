@@ -27,9 +27,9 @@ public class BaseCrudController<T> : BaseController
     }
 
     [HttpPost("Add")]
-    public async Task<bool> Add(T entity)
+    public async Task<ActionResult<bool>> Add(T entity)
     {
-        return await _baseCrudService.Add(entity);
+        return CreatedAtAction(nameof(GetById), await _baseCrudService.Add(entity));
     }
 
     [HttpDelete("Delete")]
