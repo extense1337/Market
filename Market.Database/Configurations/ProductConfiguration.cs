@@ -8,6 +8,8 @@ public class ProductConfiguration : IEntityTypeConfiguration<Product>
 {
     public void Configure(EntityTypeBuilder<Product> builder)
     {
-        builder.Property(p => p.Seller).IsRequired(false);
+        builder
+            .HasMany(product => product.Pictures)
+            .WithOne(picture => picture.Product);
     }
 }

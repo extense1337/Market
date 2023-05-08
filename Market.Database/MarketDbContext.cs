@@ -9,7 +9,7 @@ public sealed class MarketDbContext : DbContext
     public MarketDbContext(DbContextOptions<MarketDbContext> options) 
         : base(options) { }
     
-    public DbSet<Person> Persons { get; set; } = null!;
+    public DbSet<User> Users { get; set; } = null!;
 
     public DbSet<Product> Products { get; set; } = null!;
 
@@ -17,6 +17,8 @@ public sealed class MarketDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.ApplyConfiguration(new ProductConfiguration());
+        modelBuilder.ApplyConfiguration(new ProductPictureConfiguration());
+        modelBuilder.ApplyConfiguration(new UserConfiguration());
     }
 
     #region Migration commands
