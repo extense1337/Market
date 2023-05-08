@@ -37,5 +37,6 @@ public static class DependencyContainer
     private static void RegisterServices(IServiceCollection services)
     {
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IUserService, UserService>();
     }
 }
