@@ -1,33 +1,44 @@
-﻿using Market.Database;
-using Market.DomainEntities.Entities;
+﻿using Market.DomainEntities.Entities;
+using Market.DomainRepositories.Interfaces;
 using Market.Services.DTOs;
 using Market.Services.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Market.Services.Services;
 
 public class UserService : IUserService
 {
-    private readonly MarketDbContext _dbContext;
+    private readonly IUserRepository _userRepository;
 
-    public UserService(MarketDbContext dbContext)
+    public UserService(IUserRepository userRepository)
     {
-        _dbContext = dbContext;
+        _userRepository = userRepository;
     }
 
+    /// <summary>
+    /// Get user by username
+    /// </summary>
+    /// <param name="userName"></param>
+    /// <returns></returns>
     public async Task<UserDto?> GetUserByUserName(string userName)
     {
-        var user = await _dbContext.Users.Where(user => user.UserName == userName).FirstOrDefaultAsync();
+        var user = await _userRepository.GetUserAsync(userName);
 
         return user is not null
             ? new UserDto(user.UserName, user.FullName, user.Email, user.SellingProducts)
             : null;
     }
 
+    /// <summary>
+    /// Create user
+    /// </summary>
+    /// <param name="userCreateDto"></param>
+    /// <returns></returns>
     public async Task<bool> CreateUser(UserCreateDto userCreateDto)
     {
-        if (_dbContext.Users.Any(userEntry => userEntry.UserName == userCreateDto.UserName))
-            return false; // todo: throw - user already exists
+        var isUserExist = await _userRepository.IsUserExistAsync(userCreateDto.UserName);
+
+        if (isUserExist)
+            return false;
 
         var user = new User
         {
@@ -37,24 +48,25 @@ public class UserService : IUserService
             Email = userCreateDto.Email
         };
 
-        await _dbContext.Users.AddAsync(user);
+        await _userRepository.CreateUserAsync(user);
 
-        await _dbContext.SaveChangesAsync();
-
-        return _dbContext.Users.Any(userEntry => userEntry.UserName == userCreateDto.UserName);
+        return await _userRepository.IsUserExistAsync(userCreateDto.UserName);
     }
 
+    /// <summary>
+    /// Update user
+    /// </summary>
+    /// <param name="userUpdateDto"></param>
+    /// <returns></returns>
     public async Task<bool> UpdateUser(UserUpdateDto userUpdateDto)
     {
-        var user = await _dbContext.Users.FirstOrDefaultAsync(user => user.Id == userUpdateDto.Id);
+        var user = await _userRepository.GetUserAsync(userUpdateDto.UserName);
 
         if (user is null) return false;
 
         user.FullName = userUpdateDto.FullName;
         user.Password = userUpdateDto.Password;
 
-        await _dbContext.SaveChangesAsync();
-
-        return true;
+        return await _userRepository.SaveChangesAsync() > 0;
     }
 }

@@ -6,4 +6,4 @@ public record UserDto(string UserName, string FullName, string Email, ICollectio
 
 public record UserCreateDto(string UserName, string FullName, string Password, string Email);
 
-public record UserUpdateDto(int Id, string FullName, string Password);
+public record UserUpdateDto(string UserName, string FullName, string Password);

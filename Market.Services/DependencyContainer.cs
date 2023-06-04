@@ -3,16 +3,17 @@ using Market.DomainRepositories.Interfaces;
 using Market.DomainRepositories.Repositories;
 using Market.Services.Interfaces;
 using Market.Services.Services;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Market.WebApi;
+namespace Market.Services;
 
 /// <summary>
-/// Основной контейнер зависимостей
+/// Main dependency container
 /// </summary>
 public static class DependencyContainer
 {
     /// <summary>
-    /// Инициализировать зависимости
+    /// Initialize dependencies
     /// </summary>
     /// <param name="services"></param>
     public static void Initialize(IServiceCollection services)
@@ -22,16 +23,17 @@ public static class DependencyContainer
     }
 
     /// <summary>
-    /// Регистрация репозиториев
+    /// Register repositories
     /// </summary>
     /// <param name="services"></param>
     private static void RegisterRepositories(IServiceCollection services)
     {
         services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
+        services.AddScoped<IUserRepository, UserRepository>();
     }
     
     /// <summary>
-    /// Регистрация сервисов
+    /// Register services
     /// </summary>
     /// <param name="services"></param>
     private static void RegisterServices(IServiceCollection services)

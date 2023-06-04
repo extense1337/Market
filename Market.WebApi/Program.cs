@@ -1,5 +1,5 @@
 using Market.Database;
-using Market.WebApi;
+using Market.Services;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -9,19 +9,20 @@ builder.Services
     .AddControllers()
     .AddNewtonsoftJson();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddDbContext<MarketDbContext>(options => 
-    options.UseNpgsql(builder.Configuration.GetConnectionString("NpgMarketDbConnection")));
+builder.Services.AddDbContext<MarketDbContext>(options =>
+{
+    options.UseNpgsql(builder.Configuration.GetConnectionString("NpgMarketDbConnection"));
+    options.UseSnakeCaseNamingConvention();
+});
 
 DependencyContainer.Initialize(builder.Services);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
