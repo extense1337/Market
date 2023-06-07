@@ -3,7 +3,7 @@ using Market.DomainEntities.Entities;
 
 namespace Market.DomainRepositories.Interfaces;
 
-public interface IUserRepository
+public interface IUserRepository : IBaseRepository
 {
     Task<User?> GetUserAsync(string userName);
     Task<bool> CreateUserAsync(User user);
@@ -11,5 +11,4 @@ public interface IUserRepository
     Task<bool> DeleteUserAsync(string userName);
     public IQueryable<User> GetUsers(Expression<Func<User, int, bool>> expression);
     Task<bool> IsUserExistAsync(string userName);
-    Task<int> SaveChangesAsync();
 }

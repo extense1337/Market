@@ -42,3 +42,15 @@ public record UserUpdateDto(string UserName, string FullName, string Password)
         };
     }
 };
+
+public record UserLoginDto(string UserName, string Password)
+{
+    public User ToUser()
+    {
+        return new User
+        {
+            UserName = UserName,
+            Password = Password
+        };
+    }
+}

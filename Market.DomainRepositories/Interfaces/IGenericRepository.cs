@@ -2,7 +2,8 @@
 
 namespace Market.DomainRepositories.Interfaces;
 
-public interface IGenericRepository<T> where T : class
+public interface IGenericRepository<T> : IBaseRepository
+    where T : class
 {
     IAsyncEnumerable<T> GetAll();
     Task<T> GetById(int id);

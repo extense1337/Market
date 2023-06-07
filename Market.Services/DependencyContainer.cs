@@ -40,5 +40,6 @@ public static class DependencyContainer
     {
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthorizationService, AuthorizationService>();
     }
 }

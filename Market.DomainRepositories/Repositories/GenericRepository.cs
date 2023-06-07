@@ -5,32 +5,32 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Market.DomainRepositories.Repositories;
 
-public class GenericRepository<T> : IGenericRepository<T> where T : class
+public sealed class GenericRepository<T> : BaseRepository, IGenericRepository<T> where T : class
 {
     private readonly DbSet<T> _dbSet;
 
-    public GenericRepository(MarketDbContext context)
+    public GenericRepository(MarketDbContext dbContext) : base(dbContext)
     {
-        _dbSet = context.Set<T>();
+        _dbSet = dbContext.Set<T>();
     }
 
-    public virtual async Task<T> GetById(int id)
+    public async Task<T> GetById(int id)
     {
         return await _dbSet.FindAsync(id);
     }
 
-    public virtual async Task<bool> Add(T entity)
+    public async Task<bool> Add(T entity)
     {
         await _dbSet.AddAsync(entity);
         return true;
     }
 
-    public virtual bool Delete(T entity)
+    public bool Delete(T entity)
     {
         return _dbSet.Remove(entity) is { } entityEntry;
     }
 
-    public virtual IAsyncEnumerable<T> GetAll()
+    public IAsyncEnumerable<T> GetAll()
     {
         return _dbSet.AsAsyncEnumerable();
     }
@@ -40,7 +40,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _dbSet.Where(predicate).ToListAsync();
     }
 
-    public virtual bool Update(T entity)
+    public bool Update(T entity)
     {
         return _dbSet.Update(entity) is { } entityEntry;
     }

@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Market.DomainEntities.Entities;
 using Market.DomainRepositories.Interfaces;
+using Market.Services.DTOs;
 using Market.Services.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -20,13 +21,24 @@ public class AuthorizationService : IAuthorizationService
         _userRepository = userRepository;
     }
 
-    public async Task<string> AuthorizeAsync(string userName, string password)
+    public async Task<string> AuthorizeAsync(UserLoginDto userLoginDto)
     {
-        var user = await _userRepository.GetUserAsync(userName);
+        var user = await _userRepository.GetUserAsync(userLoginDto.UserName);
 
-        return user?.Password == password
+        return user?.Password == userLoginDto.Password
             ? GetJwtAuthToken(user)
             : string.Empty;
+    }
+
+    public async Task<bool> RegisterAsync(UserCreateDto userCreateDto)
+    {
+        var user = userCreateDto.ToUser();
+
+        var result = await _userRepository.CreateUserAsync(user);
+
+        await _userRepository.SaveDbChangesAsync();
+
+        return result;
     }
 
     private string GetJwtAuthToken(User user)

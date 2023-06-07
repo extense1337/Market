@@ -50,6 +50,8 @@ public class UserService : IUserService
 
         await _userRepository.CreateUserAsync(user);
 
+        await _userRepository.SaveDbChangesAsync();
+
         return await _userRepository.IsUserExistAsync(userCreateDto.UserName);
     }
 
@@ -67,6 +69,6 @@ public class UserService : IUserService
         user.FullName = userUpdateDto.FullName;
         user.Password = userUpdateDto.Password;
 
-        return await _userRepository.SaveChangesAsync() > 0;
+        return await _userRepository.SaveDbChangesAsync() > 0;
     }
 }

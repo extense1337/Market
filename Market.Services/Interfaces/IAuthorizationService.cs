@@ -1,6 +1,10 @@
-﻿namespace Market.Services.Interfaces;
+﻿using Market.Services.DTOs;
+
+namespace Market.Services.Interfaces;
 
 public interface IAuthorizationService
 {
-    Task<string> AuthorizeAsync(string userName, string password);
+    Task<string> AuthorizeAsync(UserLoginDto userLoginDto);
+
+    Task<bool> RegisterAsync(UserCreateDto userCreateDto);
 }

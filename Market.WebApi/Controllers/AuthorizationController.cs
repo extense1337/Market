@@ -1,4 +1,5 @@
-﻿using Market.Services.Interfaces;
+﻿using Market.Services.DTOs;
+using Market.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Market.WebApi.Controllers;
@@ -14,12 +15,21 @@ public class AuthorizationController : ControllerBase
         _authorizationService = authorizationService;
     }
 
-    public async Task<JsonResult> Login(string userName, string password)
+    [HttpPost("Login")]
+    public async Task<JsonResult> Login(UserLoginDto userLoginDto)
     {
-        var token = await _authorizationService.AuthorizeAsync(userName, password);
+        var token = await _authorizationService.AuthorizeAsync(userLoginDto);
 
         return string.IsNullOrEmpty(token)
             ? new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized }
             : new JsonResult(new { token }) { StatusCode = StatusCodes.Status200OK};
+    }
+
+    [HttpPost("Register")]
+    public async Task<IActionResult> Register(UserCreateDto userCreateDto)
+    {
+        var isSuccess = await _authorizationService.RegisterAsync(userCreateDto);
+
+        return Ok(isSuccess);
     }
 }

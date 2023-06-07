@@ -26,20 +26,32 @@ public class BaseCrudService<T> : IBaseCrudService<T>
 
     public async Task<bool> Add(T entity)
     {
-        return await _repository.Add(entity);
+        var result = await _repository.Add(entity);
+
+        await _repository.SaveDbChangesAsync();
+
+        return result;
     }
 
     public async Task<bool> Delete(int id)
     {
         var entity = await _repository.GetById(id);
 
-        return _repository.Delete(entity);
+        var result = _repository.Delete(entity);
+
+        await _repository.SaveDbChangesAsync();
+
+        return result;
     }
 
     public async Task<bool> Update(int id)
     {
         var entity = await _repository.GetById(id);
         
-        return _repository.Update(entity);
+        var result = _repository.Update(entity);
+
+        await _repository.SaveDbChangesAsync();
+
+        return result;
     }
 }

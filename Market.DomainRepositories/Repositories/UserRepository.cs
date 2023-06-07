@@ -6,18 +6,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Market.DomainRepositories.Repositories;
 
-public class UserRepository : IUserRepository
+public class UserRepository : BaseRepository, IUserRepository
 {
-    private readonly MarketDbContext _dbContext;
-
     /// <summary>
     /// DbSet of User type
     /// </summary>
-    private DbSet<User> UserSet => _dbContext.Users;
+    private DbSet<User> UserSet => DbContext.Users;
 
-    public UserRepository(MarketDbContext dbContext)
+    public UserRepository(MarketDbContext dbContext) : base(dbContext)
     {
-        _dbContext = dbContext;
     }
 
     /// <summary>
@@ -87,14 +84,5 @@ public class UserRepository : IUserRepository
     public async Task<bool> IsUserExistAsync(string userName)
     {
         return await UserSet.AnyAsync(user => user.UserName == userName);
-    }
-
-    /// <summary>
-    /// Save changes async
-    /// </summary>
-    /// <returns>count of modified rows</returns>
-    public async Task<int> SaveChangesAsync()
-    {
-        return await _dbContext.SaveChangesAsync();
     }
 }
