@@ -14,5 +14,5 @@ public class Product : BaseEntity
     
     public virtual User Seller { get; set; }
 
-    public virtual List<ProductPicture> Pictures { get; set; }
+    public virtual ICollection<ProductPicture> Pictures { get; set; }
 }
