@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.DomainEntities", "Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.DomainRepositories", "Market.DomainRepositories\Market.DomainRepositories.csproj", "{E869D5E0-FCF1-4376-B904-E168CBEE5DEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.WebClient", "Market.WebClient\Market.WebClient.csproj", "{6C248194-E041-465D-9C5E-FD8356436C44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,5 +38,9 @@ Global
 		{E869D5E0-FCF1-4376-B904-E168CBEE5DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E869D5E0-FCF1-4376-B904-E168CBEE5DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E869D5E0-FCF1-4376-B904-E168CBEE5DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C248194-E041-465D-9C5E-FD8356436C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C248194-E041-465D-9C5E-FD8356436C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C248194-E041-465D-9C5E-FD8356436C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C248194-E041-465D-9C5E-FD8356436C44}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
