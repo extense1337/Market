@@ -27,7 +27,8 @@ public class UserController : ControllerBase
     {
         var user = await _userService.GetUserByUserName(userName);
 
-        if (user is null) throw new Exception("Пользователь с таким логином не найден!");
+        if (user is null)
+            return NotFound();
 
         return Ok(user);
     }

@@ -30,6 +30,8 @@ public class AuthorizationController : ControllerBase
     {
         var isSuccess = await _authorizationService.RegisterAsync(userCreateDto);
 
-        return Ok(isSuccess);
+        return isSuccess
+            ? Ok(isSuccess)
+            : Problem(statusCode: StatusCodes.Status503ServiceUnavailable);
     }
 }
